@@ -1,0 +1,41 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+
+phases:
+  install:
+    commands:
+      # - command
+      # - command
+        - echo Installing Angular Latest
+        - npm install -g @angular/cli@latest
+        - echo Adding Node Modules
+        - npm install
+  #pre_build:
+    #commands:
+      # - command
+      # - command
+  build:
+    commands:
+      - ng build  && aws s3 sync dist/sushil-angular-code/ s3://sushil-angular-code-s3 --acl public-read && aws cloudfront create-invalidation --distribution-id ECTWU --paths '/*'
+      # - command
+  #post_build:
+    #commands:
+      # - command
+      # - command
+#artifacts:
+  #files:
+    # - location
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths
